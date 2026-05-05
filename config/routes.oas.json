@@ -86,6 +86,42 @@
           "200": { "description": "OK" }
         }
       }
+    },
+    "/": {
+      "get": {
+        "summary": "Landing Page",
+        "operationId": "getLandingPage",
+        "x-zuplo-route": {
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://pint-api-delta.vercel.app"
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      }
+    },
+    "/{path+}": {
+      "get": {
+        "summary": "Static Assets",
+        "operationId": "getStaticAssets",
+        "x-zuplo-route": {
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://pint-api-delta.vercel.app/{path}"
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      }
     }
   }
 }
