@@ -15,7 +15,8 @@ export default async function handler(req, res) {
     landscape = false, 
     margin = { top: '1cm', right: '1cm', bottom: '1cm', left: '1cm' },
     printBackground = true,
-    scale = 1
+    scale = 1,
+    waitUntil = 'networkidle2'
   } = req.body;
 
   if (!url && !html) {
@@ -25,48 +26,82 @@ export default async function handler(req, res) {
     });
   }
 
-  let browser = null;
-  try {
-    browser = await getBrowser();
-    const page = await browser.newPage();
-    
-    if (html) {
-      await page.setContent(html, { waitUntil: 'networkidle0' });
-    } else {
-      await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
-    }
+  let lastError = null;
+  const maxRetries = 3;
 
-    const pdfBuffer = await page.pdf({
-      format,
-      landscape: !!landscape,
-      printBackground: !!printBackground,
-      scale: Number(scale),
-      margin: {
-        top: margin.top || '1cm',
-        right: margin.right || '1cm',
-        bottom: margin.bottom || '1cm',
-        left: margin.left || '1cm'
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    let browser = null;
+    let page = null;
+
+    try {
+      browser = await getBrowser();
+      page = await browser.newPage();
+      
+      if (html) {
+        // If HTML is provided, we use setContent
+        await page.setContent(html, { waitUntil: 'networkidle0' });
+      } else {
+        // If URL is provided, use goto with timeout fallback
+        try {
+          await page.goto(url, { 
+            waitUntil: waitUntil || 'networkidle2', 
+            timeout: 25000 
+          });
+        } catch (gotoError) {
+          console.warn(`PDF Navigation timeout on attempt ${attempt} for ${url}. Proceeding with partial render.`);
+        }
       }
-    });
 
-    if (process.env.DEBUG_PREVIEW === 'true') {
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Length', pdfBuffer.length);
-      return res.end(pdfBuffer, 'binary');
+      const pdfBuffer = await page.pdf({
+        format,
+        landscape: !!landscape,
+        printBackground: !!printBackground,
+        scale: Number(scale),
+        margin: {
+          top: margin.top || '1cm',
+          right: margin.right || '1cm',
+          bottom: margin.bottom || '1cm',
+          left: margin.left || '1cm'
+        }
+      });
+
+      // Cleanup page but keep browser alive
+      await page.close();
+
+      if (process.env.DEBUG_PREVIEW === 'true') {
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Length', pdfBuffer.length);
+        return res.end(pdfBuffer, 'binary');
+      }
+
+      return res.status(200).json({
+        success: true,
+        pdf_base64: pdfBuffer.toString('base64'),
+        format,
+        landscape: !!landscape,
+        attempt,
+        timestamp: new Date().toISOString()
+      });
+
+    } catch (error) {
+      lastError = error;
+      console.error(`PDF Attempt ${attempt} failed:`, error.message);
+      
+      if (page) await page.close().catch(() => {});
+      
+      if (error.message.includes('navigating to') || error.message.includes('Target closed') || error.message.includes('Session closed')) {
+        await closeBrowser(true); 
+      }
+
+      if (attempt < maxRetries) {
+        await new Promise(r => setTimeout(r, 500));
+        continue;
+      }
     }
-
-    return res.status(200).json({
-      success: true,
-      pdf_base64: pdfBuffer.toString('base64'),
-      format,
-      landscape: !!landscape,
-      timestamp: new Date().toISOString()
-    });
-
-  } catch (error) {
-    console.error('PDF generation error:', error);
-    return res.status(500).json({ status: 'error', message: error.message });
-  } finally {
-    await closeBrowser(browser);
   }
+
+  return res.status(500).json({ 
+    status: 'error', 
+    message: `All ${maxRetries} PDF attempts failed. Last error: ${lastError.message}` 
+  });
 }
