@@ -120,6 +120,21 @@
         }
       }
     },
+    "/webhooks/dodo": {
+      "post": {
+        "summary": "Dodo Payment Webhook Sync",
+        "operationId": "dodoWebhookSync",
+        "x-zuplo-route": {
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/dodo-sync)"
+          }
+        },
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      }
+    },
     "/{path+}": {
       "get": {
         "summary": "Static Assets",
