@@ -26,10 +26,10 @@
     "zudoku": "^0.76"
   },
   "devDependencies": {
-    "@types/node": "^22",
+    "@types/node": "^22.0.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "typescript": "^5",
+    "typescript": "^5.3.3",
     "esbuild": "0.27.7"
   }
 }
