@@ -1,166 +1,123 @@
 import { getBrowser, closeBrowser } from '../../../lib/browser.js';
 import { validateZuploSecret, setCorsHeaders } from '../../../lib/auth.js';
+import { Renderer } from '../../../lib/renderer.js';
+
+// Feature 8: Simple In-Memory Cache
+const cache = new Map();
+const CACHE_TTL = 1000 * 60 * 60; // 1 hour for OG images
 
 export default async function handler(req, res) {
+  const startTime = Date.now();
+  const requestId = Math.random().toString(36).substring(7);
+  
   setCorsHeaders(res);
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  // Authentication check
+  res.setHeader('X-Request-ID', requestId);
   if (!validateZuploSecret(req, res)) return;
 
   const { 
     title, 
     description = '', 
-    theme = 'light', 
+    theme = 'dark', 
     background_color, 
-    logo_url 
+    logo_url,
+    noCache = false,
+    debug = false
   } = req.body;
 
   if (!title) {
-    return res.status(400).json({ 
-      status: 'error', 
-      message: 'title is required' 
-    });
+    return res.status(400).json({ success: false, error: 'validation_error', message: 'title is required' });
   }
 
-  // Constraints
-  const displayTitle = title.substring(0, 80);
-  const displayDescription = description.substring(0, 120);
+  const cacheKey = JSON.stringify({ title, description, theme, background_color, logo_url });
+  if (!noCache && cache.has(cacheKey)) {
+    const cached = cache.get(cacheKey);
+    res.setHeader('X-Cache', 'HIT');
+    res.setHeader('X-Render-Time', '0ms');
+    if (debug) return res.status(200).json(cached.data);
+    const buffer = Buffer.from(cached.data.image_base64, 'base64');
+    res.setHeader('Content-Type', 'image/png');
+    return res.end(buffer, 'binary');
+  }
 
-  // Theme Styles
   const themes = {
-    light: { bg: '#ffffff', text: '#1a1a1a', secondary: '#4a4a4a' },
-    dark: { bg: '#0F0F1A', text: '#ffffff', secondary: '#a0a0a0' },
-    brand: { bg: '#00FF41', text: '#000000', secondary: '#333333' } // Updated to Neo-Brutalist Green
+    light: { bg: '#ffffff', text: '#000000', accent: '#00FF41' },
+    dark: { bg: '#000000', text: '#ffffff', accent: '#00FF41' },
+    green: { bg: '#00FF41', text: '#000000', accent: '#000000' }
   };
 
-  const currentTheme = themes[theme] || themes.light;
+  const currentTheme = themes[theme] || themes.dark;
   const bgColor = background_color || currentTheme.bg;
 
   const html = `
     <!DOCTYPE html>
     <html>
     <head>
-      <meta charset="utf-8">
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Outfit:wght@700&display=swap" rel="stylesheet">
       <style>
         body {
-          margin: 0;
-          padding: 0;
-          width: 1200px;
-          height: 630px;
-          background-color: ${bgColor};
-          color: ${currentTheme.text};
-          font-family: 'Inter', sans-serif;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: 0 80px;
-          box-sizing: border-box;
-          position: relative;
-          overflow: hidden;
-          border: 20px solid ${currentTheme.text === '#ffffff' ? '#000' : '#fff'};
+          margin: 0; padding: 0; width: 1200px; height: 630px;
+          background-color: ${bgColor}; color: ${currentTheme.text};
+          font-family: 'Inter', sans-serif; display: flex; flex-direction: column;
+          justify-content: center; padding: 0 100px; box-sizing: border-box;
+          border: 15px solid ${currentTheme.accent};
         }
-
-        .logo {
-          position: absolute;
-          top: 60px;
-          left: 80px;
-          max-height: 60px;
-          max-width: 250px;
-          object-fit: contain;
-        }
-
-        .content {
-          margin-top: 40px;
-        }
-
-        h1 {
-          font-size: 90px;
-          font-weight: 900;
-          line-height: 1.0;
-          margin: 0;
-          letter-spacing: -0.04em;
-          max-width: 1000px;
-          text-transform: uppercase;
-        }
-
-        p {
-          font-size: 38px;
-          line-height: 1.3;
-          margin-top: 30px;
-          color: ${currentTheme.secondary};
-          max-width: 900px;
-          font-weight: 700;
-        }
+        h1 { font-size: 95px; font-weight: 900; margin: 0; line-height: 1.0; text-transform: uppercase; letter-spacing: -2px; }
+        p { font-size: 35px; margin-top: 30px; opacity: 0.8; font-family: 'Outfit', sans-serif; }
       </style>
     </head>
     <body>
-      ${logo_url ? `<img src="${logo_url}" class="logo" />` : ''}
-      <div class="content">
-        <h1>${displayTitle}</h1>
-        ${displayDescription ? `<p>${displayDescription}</p>` : ''}
-      </div>
+      <h1>${title}</h1>
+      ${description ? `<p>${description}</p>` : ''}
     </body>
     </html>
   `;
 
   let lastError = null;
-  const maxRetries = 3;
+  const maxRetries = 2;
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    let browser = null;
     let page = null;
-
     try {
-      browser = await getBrowser();
+      const browser = await getBrowser();
       page = await browser.newPage();
-      
       await page.setViewport({ width: 1200, height: 630 });
       await page.setContent(html, { waitUntil: 'networkidle0' });
 
-      const screenshot = await page.screenshot({
-        type: 'png',
-        encoding: 'base64'
-      });
+      const renderer = new Renderer(page, { wait: 'smart' });
+      const debugInfo = await renderer.process();
 
+      const screenshot = await page.screenshot({ type: 'png', encoding: 'base64' });
       await page.close();
 
-      if (process.env.DEBUG_PREVIEW === 'true') {
-        const buffer = Buffer.from(screenshot, 'base64');
-        res.setHeader('Content-Type', 'image/png');
-        res.setHeader('Content-Length', buffer.length);
-        return res.end(buffer, 'binary');
-      }
-
-      return res.status(200).json({
+      const renderTime = Date.now() - startTime;
+      const responseData = {
         success: true,
         image_base64: screenshot,
-        width: 1200,
-        height: 630,
-        theme,
-        attempt,
+        width: 1200, height: 630,
+        render_time: renderTime,
+        request_id: requestId,
         timestamp: new Date().toISOString()
-      });
+      };
+
+      if (debug) responseData.debug = debugInfo;
+      cache.set(cacheKey, { timestamp: Date.now(), data: responseData });
+
+      if (req.headers['accept']?.includes('image/')) {
+        res.setHeader('Content-Type', 'image/png');
+        return res.end(Buffer.from(screenshot, 'base64'), 'binary');
+      }
+
+      return res.status(200).json(responseData);
 
     } catch (error) {
       lastError = error;
-      console.error(`OG Attempt ${attempt} failed:`, error.message);
       if (page) await page.close().catch(() => {});
-      
-      if (error.message.includes('Target closed') || error.message.includes('Session closed')) {
-        await closeBrowser(true); 
-      }
-
-      if (attempt < maxRetries) {
-        await new Promise(r => setTimeout(r, 500));
-        continue;
-      }
+      if (error.message.includes('Target closed')) await closeBrowser(true);
+      if (attempt < maxRetries) continue;
     }
   }
 
-  return res.status(500).json({ 
-    status: 'error', 
-    message: `All ${maxRetries} OG attempts failed. Last error: ${lastError.message}` 
-  });
+  return res.status(500).json({ success: false, error: 'render_failed', message: lastError.message });
 }

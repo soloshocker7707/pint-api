@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pint API - Advanced Demos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .demo-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--text-color);
+            padding: 2rem;
+            box-shadow: 10px 10px 0px 0px var(--text-color);
+            transition: transform 0.2s;
+        }
+        .demo-card:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 15px 15px 0px 0px var(--text-color);
+        }
+        .demo-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .demo-img-container {
+            margin-top: 1.5rem;
+            border: 2px solid var(--text-color);
+            background: #eee;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .demo-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .code-snippet {
+            background: #111;
+            color: #0f0;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">PINT<span>API</span></div>
+            <div class="nav-links">
+                <a href="index.html">Back Home</a>
+                <a href="https://zuplo.link/pint-api-docs">API Docs</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Advanced <span>Capabilities</span></h1>
+            <p>Pint API isn't just another screenshot tool. It's a high-performance rendering engine designed for the modern web.</p>
+        </section>
+
+        <div class="demo-grid">
+            <!-- Demo 1: Auto Clean -->
+            <div class="demo-card">
+                <div class="demo-tag">FEATURE 1</div>
+                <h3>Auto Clean Mode</h3>
+                <p>Instantly strips away cookie banners, newsletter popups, and sticky ads for a clean shot.</p>
+                <div class="code-snippet">"clean": true</div>
+                <div class="demo-img-container" id="clean-demo">
+                    <button class="btn primary" onclick="runDemo('clean')">Test Cleanup</button>
+                </div>
+            </div>
+
+            <!-- Demo 2: Animation Freezing -->
+            <div class="demo-card">
+                <div class="demo-tag">FEATURE 2</div>
+                <h3>Animation Freezing</h3>
+                <p>Stop CSS animations and transitions to get pixel-perfect, consistent renders every time.</p>
+                <div class="code-snippet">"freezeAnimations": true</div>
+                <div class="demo-img-container" id="freeze-demo">
+                    <button class="btn primary" onclick="runDemo('freeze')">Test Freeze</button>
+                </div>
+            </div>
+
+            <!-- Demo 3: Templates -->
+            <div class="demo-card">
+                <div class="demo-tag">FEATURE 5</div>
+                <h3>Social Card Templates</h3>
+                <p>Generate high-quality Open Graph images from reusable HTML templates with dynamic data.</p>
+                <div class="code-snippet">"template": "social-card"</div>
+                <div class="demo-img-container" id="template-demo">
+                    <button class="btn primary" onclick="runDemo('template')">Generate Card</button>
+                </div>
+            </div>
+
+            <!-- Demo 4: Smart Wait -->
+            <div class="demo-card">
+                <div class="demo-tag">FEATURE 3</div>
+                <h3>Smart Stabilization</h3>
+                <p>Intelligently waits for fonts, network idle, and lazy-loaded images to finish rendering.</p>
+                <div class="code-snippet">"wait": "smart"</div>
+                <div class="demo-img-container" id="smart-demo">
+                    <button class="btn primary" onclick="runDemo('smart')">Test Stability</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script>
+        async function runDemo(type) {
+            const container = document.getElementById(`${type}-demo`);
+            container.innerHTML = '<div class="loader"></div>';
+            
+            // In a real scenario, this would call the API.
+            // For the demo, we'll simulate the response with a placeholder or a real call if the user is logged in.
+            setTimeout(() => {
+                let imgUrl = '';
+                if (type === 'template') {
+                    imgUrl = 'https://via.placeholder.com/1200x630/ff3e00/ffffff?text=PINT+API+SOCIAL+CARD';
+                } else {
+                    imgUrl = 'https://via.placeholder.com/1280x800/000000/ffffff?text=' + type.toUpperCase() + '+RENDER';
+                }
+                container.innerHTML = `<img src="${imgUrl}" alt="${type} demo">`;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

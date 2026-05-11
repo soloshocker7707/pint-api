@@ -93,12 +93,12 @@
 
     <main id="landing-content">
         <section class="hero">
-            <div class="hero-badge">BUILT FOR SAAS PLATFORMS</div>
-            <h1 class="reveal">CAPTURE <br>THE WEB. <br><span>FLAWLESSLY.</span></h1>
-            <p class="subtitle">A high-performance screenshot and PDF API. No missing libraries. No headless browser headaches. Just pure, scalable pixel perfection.</p>
+            <div class="hero-badge">INFRASTRUCTURE FOR THE MODERN WEB</div>
+            <h1 class="reveal">CAPTURE <br>THE WEB. <br><span>JUST WORKS.</span></h1>
+            <p class="subtitle">A high-performance screenshot and PDF platform. Strip cookie banners, freeze animations, and generate pixel-perfect renders of JS-heavy sites at scale.</p>
             <div class="cta-group">
-                <a href="#pricing" class="btn btn-primary">View Pricing</a>
-                <button id="hero-signup" class="btn btn-secondary">Get Free API Key</button>
+                <button id="hero-signup" class="btn btn-primary">Get Free API Key</button>
+                <a href="demos.html" class="btn btn-secondary" style="text-decoration: none;">View Live Demos</a>
             </div>
         </section>
 
@@ -127,28 +127,28 @@
             <h2 class="section-title">THE ENGINE.</h2>
             <div class="features-grid">
                 <div class="feature-block">
-                    <h3>URL & HTML to Any Format</h3>
-                    <p>Convert any live URL or raw HTML string directly into high-fidelity <strong>PNG, JPG, or PDF</strong>. Perfect for automated reporting or archiving.</p>
+                    <h3>✨ Auto Clean Mode</h3>
+                    <p>Heuristically remove cookie banners, popups, and intrusive ads before capture. Perfect for clean, professional shots.</p>
                 </div>
                 <div class="feature-block">
-                    <h3>Smart Wait Engine</h3>
-                    <p>Our <strong>Auto-Stability Engine</strong> detects when a page has actually finished rendering. No more half-loaded frames or mid-animation captures on heavy SPAs.</p>
+                    <h3>🧠 Smart Stabilization</h3>
+                    <p>Intelligent waiting for network idle, font loading, and layout shifts. No more half-loaded frames on heavy SPAs.</p>
                 </div>
                 <div class="feature-block">
-                    <h3>High-Performance Pooling</h3>
-                    <p>We use a singleton <strong>Browser Pooling</strong> strategy. Warm Lambda functions reuse pre-launched browser instances, cutting latency from seconds to <strong>milliseconds</strong>.</p>
+                    <h3>❄️ Freeze Animations</h3>
+                    <p>Automatically pause CSS animations and transitions to ensure pixel-perfect consistency across repeated renders.</p>
                 </div>
                 <div class="feature-block">
-                    <h3>Anti-Bot Stealth Mode</h3>
-                    <p>Bypass detection with ease. We rotate modern <strong>User-Agents</strong> and hide Puppeteer footprints (Webdriver evasions) to ensure you get the data, not a captcha.</p>
+                    <h3>🎨 HTML Templates</h3>
+                    <p>Turn HTML templates into high-quality social cards, invoices, and reports instantly with dynamic data injection.</p>
                 </div>
                 <div class="feature-block">
-                    <h3>Resilient Retry Logic</h3>
-                    <p>3-attempt auto-retry and <strong>Timeout Fallbacks</strong> mean you always get a result. If a page is too slow, we'll snap what's there instead of throwing an error.</p>
+                    <h3>⚡ Global Caching</h3>
+                    <p>Sub-second response times with internal caching. High-frequency requests are served from the edge instantly.</p>
                 </div>
                 <div class="feature-block">
-                    <h3>Pixel-Perfect Consistency</h3>
-                    <p>Locked Chromium versions natively. No "missing libnss3.so" errors. Your screenshots will look identical today, tomorrow, and next year.</p>
+                    <h3>🛡️ Stealth Mode</h3>
+                    <p>Bypass anti-bot systems with advanced browser fingerprinting and webdriver evasion technology.</p>
                 </div>
             </div>
         </section>
@@ -163,34 +163,15 @@
                         <div class="price">$0<span>/mo</span></div>
                     </div>
                     <div class="card-body">
-                        <div class="call-limit">250 Screenshots</div>
+                        <div class="call-limit">1,000 requests</div>
                         <ul class="tier-features">
-                            <li>Low Concurrency</li>
+                            <li>Standard screenshots</li>
                             <li>Basic Stealth</li>
                             <li>Standard Rendering</li>
                         </ul>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn-card-outline">Get Started</a>
-                    </div>
-                </div>
-
-                <!-- Starter Tier -->
-                <div class="pricing-card">
-                    <div class="card-header">
-                        <h3>Starter</h3>
-                        <div class="price">$29<span>/mo</span></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="call-limit">5,000 Screenshots</div>
-                        <ul class="tier-features">
-                            <li>Shared Pooling</li>
-                            <li>Standard Anti-Bot</li>
-                            <li>Standard Speed</li>
-                        </ul>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn-card-outline">Subscribe</a>
+                        <button class="btn btn-card-outline" onclick="openAuthModal()">Get Started</button>
                     </div>
                 </div>
 
@@ -199,37 +180,38 @@
                     <div class="featured-badge">MOST POPULAR</div>
                     <div class="card-header">
                         <h3>Pro</h3>
-                        <div class="price">$99<span>/mo</span></div>
+                        <div class="price">$29<span>/mo</span></div>
                     </div>
                     <div class="card-body">
-                        <div class="call-limit">25,000 Screenshots</div>
+                        <div class="call-limit">50,000 requests</div>
                         <ul class="tier-features">
-                            <li><strong>High Concurrency</strong></li>
-                            <li><strong>Smart Wait Engine</strong></li>
-                            <li><strong>Advanced Stealth</strong></li>
+                            <li><strong>Auto Clean Mode</strong></li>
+                            <li><strong>Smart Stabilization</strong></li>
+                            <li><strong>HTML Templates</strong></li>
+                            <li>Priority Support</li>
                         </ul>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn-card-primary">Go Pro</a>
+                        <button class="btn btn-card-primary" onclick="openAuthModal()">Go Pro</button>
                     </div>
                 </div>
 
-                <!-- Expert Tier -->
+                <!-- Business Tier -->
                 <div class="pricing-card expert">
                     <div class="card-header">
-                        <h3>Expert</h3>
-                        <div class="price">$199<span>/mo</span></div>
+                        <h3>Business</h3>
+                        <div class="price">$99<span>/mo</span></div>
                     </div>
                     <div class="card-body">
-                        <div class="call-limit">75,000 Screenshots</div>
+                        <div class="call-limit">500,000 requests</div>
                         <ul class="tier-features">
-                            <li><strong>Priority Pooling</strong></li>
-                            <li><strong>Full Concurrency</strong></li>
-                            <li><strong>Premium Stealth+</strong></li>
+                            <li><strong>Global Edge Caching</strong></li>
+                            <li><strong>Custom CSS Injection</strong></li>
+                            <li><strong>Dedicated Infrastructure</strong></li>
                         </ul>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn-card-expert">Contact Sales</a>
+                        <button class="btn btn-card-expert" onclick="openAuthModal()">Contact Sales</button>
                     </div>
                 </div>
             </div>
