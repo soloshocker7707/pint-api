@@ -23,6 +23,7 @@
         <div class="logo">PINT<span>API</span></div>
         <div class="nav-links">
             <a href="#features">Features</a>
+            <a href="#demos">Demos</a>
             <a href="#pricing">Pricing</a>
             <a href="/api/health" class="health-badge">System: ONLINE</a>
             <button id="auth-btn" class="btn btn-nav">Login</button>
@@ -149,6 +150,86 @@
                 <div class="feature-block">
                     <h3>🛡️ Stealth Mode</h3>
                     <p>Bypass anti-bot systems with advanced browser fingerprinting and webdriver evasion technology.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Demos Section (NEW) -->
+        <section id="demos" class="demos-section" style="padding: 4rem 0 10rem;">
+            <h2 class="section-title">LIVE <span>CAPABILITIES.</span></h2>
+            <p class="subtitle" style="max-width: 800px;">Experience the power of our rendering engine. These demos show how Pint API handles the most frustrating parts of web capture.</p>
+            
+            <div class="demo-grid">
+                <!-- Demo 1: Auto Clean -->
+                <div class="demo-card">
+                    <div class="demo-tag">FEATURE 1</div>
+                    <h3>Auto Clean Mode</h3>
+                    <p>Instantly strip away cookie banners, newsletter popups, and sticky ads that ruin automated screenshots.</p>
+                    
+                    <div class="demo-info">
+                        <h4>Under the Hood</h4>
+                        <p>We use a combination of EasyList-inspired filtering and heuristic detection to identify high-z-index overlays and remove them before the shutter snaps.</p>
+                    </div>
+
+                    <div class="code-snippet">"clean": true</div>
+                    
+                    <div class="demo-img-container" id="clean-demo">
+                        <button class="btn btn-primary demo-btn" onclick="runDemo('clean')">Run Cleanup Demo</button>
+                    </div>
+                </div>
+
+                <!-- Demo 2: Smart Wait -->
+                <div class="demo-card">
+                    <div class="demo-tag">FEATURE 2</div>
+                    <h3>Smart Stabilization</h3>
+                    <p>Never capture a half-loaded page again. We wait for fonts, network requests, and layout shifts to settle.</p>
+                    
+                    <div class="demo-info">
+                        <h4>Under the Hood</h4>
+                        <p>Our engine monitors the DOM for changes. If a lazy-loaded image or a slow font causes a layout shift, we reset the timer and wait for true stability.</p>
+                    </div>
+
+                    <div class="code-snippet">"wait": "smart"</div>
+                    
+                    <div class="demo-img-container" id="smart-demo">
+                        <button class="btn btn-primary demo-btn" onclick="runDemo('smart')">Run Stability Demo</button>
+                    </div>
+                </div>
+
+                <!-- Demo 3: Animation Freeze -->
+                <div class="demo-card">
+                    <div class="demo-tag">FEATURE 3</div>
+                    <h3>Animation Freezing</h3>
+                    <p>Stop CSS animations and transitions in their tracks to get consistent, non-blurry results.</p>
+                    
+                    <div class="demo-info">
+                        <h4>Under the Hood</h4>
+                        <p>We inject a specialized CSS runtime that forces all transition and animation durations to 0s, effectively freezing the page at the perfect frame.</p>
+                    </div>
+
+                    <div class="code-snippet">"freezeAnimations": true</div>
+                    
+                    <div class="demo-img-container" id="freeze-demo">
+                        <button class="btn btn-primary demo-btn" onclick="runDemo('freeze')">Run Freeze Demo</button>
+                    </div>
+                </div>
+
+                <!-- Demo 4: HTML Templates -->
+                <div class="demo-card">
+                    <div class="demo-tag">FEATURE 4</div>
+                    <h3>Social Card Templates</h3>
+                    <p>Generate beautiful social cards, certificates, and invoices from HTML templates with dynamic data.</p>
+                    
+                    <div class="demo-info">
+                        <h4>Under the Hood</h4>
+                        <p>Pass your data as JSON and we'll inject it into our high-performance HTML templates. Perfect for dynamic OG images or PDF generation.</p>
+                    </div>
+
+                    <div class="code-snippet">"template": "social-card"</div>
+                    
+                    <div class="demo-img-container" id="template-demo">
+                        <button class="btn btn-primary demo-btn" onclick="runDemo('template')">Generate Card Demo</button>
+                    </div>
                 </div>
             </div>
         </section>

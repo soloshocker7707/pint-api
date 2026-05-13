@@ -156,4 +156,34 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         observer.observe(el);
     });
+
+    // --- DEMO HANDLER ---
+    window.runDemo = async (type) => {
+        const container = document.getElementById(`${type}-demo`);
+        const originalContent = container.innerHTML;
+        container.innerHTML = '<div class="loader"></div>';
+        
+        // Simulate API call delay
+        setTimeout(() => {
+            let imgUrl = '';
+            if (type === 'template') {
+                imgUrl = 'https://via.placeholder.com/1200x630/00FF41/000000?text=DYNAMIC+SOCIAL+CARD';
+            } else {
+                imgUrl = 'https://via.placeholder.com/1280x800/111111/00FF41?text=' + type.toUpperCase() + '+RENDER';
+            }
+            container.innerHTML = `<img src="${imgUrl}" alt="${type} demo" style="animation: modalIn 0.5s ease-out;">`;
+            
+            // Add a "Reset" button after 5 seconds
+            setTimeout(() => {
+                const resetBtn = document.createElement('button');
+                resetBtn.className = 'btn btn-small';
+                resetBtn.style.position = 'absolute';
+                resetBtn.style.bottom = '10px';
+                resetBtn.style.right = '10px';
+                resetBtn.textContent = 'Reset';
+                resetBtn.onclick = () => { container.innerHTML = originalContent; };
+                container.appendChild(resetBtn);
+            }, 1000);
+        }, 1500);
+    };
 });
