@@ -1,4 +1,4 @@
-# Pint Screenshot API 📸
+# RenderKit Screenshot API 📸
 
 A high-performance API for web screenshots, PDF generation, and Open Graph images. Built with Puppeteer and Chromium, optimized for serverless environments.
 
@@ -14,7 +14,7 @@ A high-performance API for web screenshots, PDF generation, and Open Graph image
 ## 📖 Documentation (Postman)
 
 We provide a pre-configured Postman Collection for quick testing.
-- **File**: `PintAPI.postman_collection.json`
+- **File**: `RenderKitAPI.postman_collection.json`
 - **How to use**: Open Postman -> Import -> Select the file.
 - **Variables**: Set `baseUrl` and `apiKey` in the collection variables.
 

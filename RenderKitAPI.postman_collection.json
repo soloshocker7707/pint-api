@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "c0b76168-8129-4046-8880-82c97f00184b",
-		"name": "PintAPI - SaaS Screenshot Engine",
+		"name": "RenderKit API - SaaS Screenshot Engine",
 		"description": "High-performance API for screenshots, PDFs, and OG images with Smart Wait and Anti-Bot stealth capabilities.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -96,7 +96,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"html\": \"<h1>Hello World</h1><p>Sent from PintAPI</p>\",\n  \"format\": \"Letter\"\n}",
+							"raw": "{\n  \"html\": \"<h1>Hello World</h1><p>Sent from RenderKit API</p>\",\n  \"format\": \"Letter\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -135,7 +135,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"title\": \"PintAPI High Performance\",\n  \"description\": \"Automated OG image generation for your SaaS app.\",\n  \"theme\": \"brand\"\n}",
+							"raw": "{\n  \"title\": \"RenderKit API High Performance\",\n  \"description\": \"Automated OG image generation for your SaaS app.\",\n  \"theme\": \"brand\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

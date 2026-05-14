@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "version": "1.0.0",
-    "title": "Pint Screenshot API",
+    "title": "RenderKit Screenshot API",
     "description": "High-performance infrastructure for web screenshots, PDF generation, and OG images."
   },
   "paths": {

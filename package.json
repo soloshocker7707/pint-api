@@ -1,5 +1,5 @@
 {
-  "name": "pint-api",
+  "name": "renderkit-api",
   "version": "1.0.0",
   "description": "A high-performance Screenshot and PDF generation API with Zuplo Gateway.",
   "main": "index.js",
