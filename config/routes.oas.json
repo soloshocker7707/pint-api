@@ -2,19 +2,107 @@
   "openapi": "3.1.0",
   "info": {
     "version": "1.0.0",
-    "title": "RenderKit Screenshot API"
+    "title": "RenderKit Screenshot API",
+    "description": "High-performance infrastructure for web screenshots, PDF generation, and OG images."
   },
   "paths": {
-    "/health": {
-      "get": {
+    "/v1/screenshot/capture": {
+      "post": {
+        "summary": "Capture Screenshot",
+        "operationId": "captureScreenshot",
         "x-zuplo-route": {
           "handler": {
-            "export": "default",
-            "module": "$import(@zuplo/runtime/handlers/status)",
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
             "options": {
-              "status": 200,
-              "body": "{\"status\":\"ok\"}"
+              "baseUrl": "https://renderkit-api.vercel.app/api"
             }
+          },
+          "policies": {
+            "inbound": [
+              "cors",
+              "supabase-auth",
+              "dynamic-quota",
+              "dynamic-rate-limit",
+              "inject-zuplo-secret"
+            ]
+          }
+        },
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      }
+    },
+    "/v1/screenshot/pdf": {
+      "post": {
+        "summary": "Generate PDF",
+        "operationId": "generatePdf",
+        "x-zuplo-route": {
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://renderkit-api.vercel.app/api"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "cors",
+              "supabase-auth",
+              "dynamic-quota",
+              "dynamic-rate-limit",
+              "inject-zuplo-secret"
+            ]
+          }
+        },
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      }
+    },
+    "/v1/screenshot/og": {
+      "post": {
+        "summary": "Generate OG Image",
+        "operationId": "generateOgImage",
+        "x-zuplo-route": {
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://renderkit-api.vercel.app/api"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "cors",
+              "supabase-auth",
+              "dynamic-quota",
+              "dynamic-rate-limit",
+              "inject-zuplo-secret"
+            ]
+          }
+        },
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "API Health",
+        "operationId": "apiHealth",
+        "x-zuplo-route": {
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://renderkit-api.vercel.app/api"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "cors"
+            ]
           }
         },
         "responses": {
