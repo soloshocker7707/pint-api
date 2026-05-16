@@ -55,11 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Call our Zuplo API
-            const response = await fetch('https://pint-api-soloshocker7707.zuplo.gateways.zup.lo/v1/screenshot/capture', {
+            const response = await fetch('https://pint-api-panel-main-87c9a67.zuplo.app/v1/screenshot/capture', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${userApiKey}`
+                    'x-api-key': userApiKey
                 },
                 body: JSON.stringify(options)
             });
