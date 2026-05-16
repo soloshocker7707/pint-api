@@ -12,7 +12,7 @@
     "docs": "zuplo docs"
   },
   "engines": {
-    "node": "22.x"
+    "node": "20.x"
   },
   "workspaces": [
     "docs"
