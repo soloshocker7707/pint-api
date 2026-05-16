@@ -14,7 +14,7 @@ const TIER_CONFIGS = {
     rpm: 120
   },
   Enterprise: {
-    monthly_limit: 50000,
+    monthly_limit: 100000,
     rpm: 300
   }
 };
