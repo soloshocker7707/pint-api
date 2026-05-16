@@ -3,7 +3,7 @@ import { ZuploRequest, ZuploContext } from "@zuplo/runtime";
 const TIER_CONFIGS = {
   Starter: {
     monthly_limit: 250,
-    rpm: 5
+    rpm: 2
   },
   Pro: {
     monthly_limit: 5000,
