@@ -415,108 +415,123 @@ h1 span {
     opacity: 0.5;
 }
 
+/* --- INTEGRATION SECTION --- */
+.integration-tabs {
+    margin-top: 4rem;
+    border: 3px solid var(--border);
+    background: #080808;
+    box-shadow: 12px 12px 0 var(--border);
+}
+
+.tab-headers {
+    display: flex;
+    border-bottom: 3px solid var(--border);
+    background: #000;
+}
+
+.tab-btn {
+    padding: 1.5rem 3rem;
+    background: transparent;
+    border: none;
+    border-right: 3px solid var(--border);
+    color: var(--text-dim);
+    font-weight: 900;
+    font-family: inherit;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    background: #111;
+    color: #fff;
+}
+
+.tab-btn.active {
+    background: var(--accent);
+    color: #000;
+}
+
+.tab-content {
+    display: none;
+    padding: 2rem;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.code-window {
+    background: #000;
+    border: 2px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.window-header {
+    background: #111;
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-bottom: 1px solid #222;
+}
+
+.window-header .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.window-header .title {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-left: 0.5rem;
+}
+
+.code-content {
+    padding: 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+.keyword { color: #d73a49; }
+.string { color: var(--accent); }
+.property { color: #005cc5; }
+.number { color: #f97583; }
+
+.code-snippet {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background: #111;
+    color: var(--accent);
+    font-family: monospace;
+    font-weight: 900;
+    margin-top: 1rem;
+    border: 1px solid var(--accent-dim);
+}
+
 /* --- FOOTER --- */
 footer {
-    padding: 6rem;
+    padding: 10rem 2rem;
     border-top: 3px solid var(--border);
     text-align: center;
     font-weight: 900;
     text-transform: uppercase;
     color: var(--text-dim);
-}
-
-/* --- UTILITIES --- */
-.health-badge {
-    background: var(--accent);
-    color: #000;
-    padding: 0.4rem 1rem;
-    font-weight: 900;
-    font-size: 0.8rem;
+    letter-spacing: 2px;
 }
 
 @media (max-width: 1000px) {
     h1 { font-size: 4.5rem; }
-    .dashboard-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
-}
-
-/* --- PLAYGROUND SPECIFIC --- */
-.playground-container {
-    display: grid;
-    grid-template-columns: 400px 1fr;
-    gap: 3rem;
-    margin-top: 4rem;
-}
-
-.controls {
-    background: #080808;
-    border: 3px solid var(--border);
-    padding: 3rem;
-    box-shadow: 10px 10px 0 var(--accent);
-}
-
-.control-group {
-    margin-bottom: 2rem;
-}
-
-.control-group label {
-    display: block;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    margin-bottom: 0.8rem;
-    color: var(--accent);
-}
-
-.playground-container input[type="text"] {
-    width: 100%;
-    padding: 1rem;
-    background: #000;
-    border: 2px solid #333;
-    color: #fff;
-    font-family: inherit;
-    font-weight: 700;
-}
-
-.checkbox-group {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: #ccc;
-}
-
-.preview-area {
-    background: #000;
-    border: 3px solid var(--border);
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 10px 10px 0 var(--border);
-}
-
-.render-status {
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    background: var(--accent);
-    color: #000;
-    padding: 0.5rem 1rem;
-    font-weight: 900;
-    font-size: 0.8rem;
-    display: none;
-}
-
-.error-msg {
-    color: #ff3e3e;
-    font-weight: 800;
-    margin-top: 1.5rem;
-    font-size: 0.9rem;
-    display: none;
+    .tab-btn { padding: 1rem 1.5rem; font-size: 0.8rem; }
 }

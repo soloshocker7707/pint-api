@@ -137,13 +137,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (closeModal) closeModal.addEventListener('click', () => authModal.style.display = 'none');
     if (toggleAuth) toggleAuth.addEventListener('click', () => openAuth(isLogin ? 'signup' : 'login'));
 
-    // Copy Key Handler
-    const copyBtn = document.getElementById('copy-key');
-    if (copyBtn) copyBtn.addEventListener('click', () => {
-        const key = document.getElementById('display-api-key').textContent;
-        navigator.clipboard.writeText(key).then(() => {
-            copyBtn.textContent = 'Copied!';
-            setTimeout(() => copyBtn.textContent = 'Copy', 2000);
+    // --- INTEGRATION TABS ---
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.getAttribute('data-tab');
+            
+            // Update buttons
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Update content
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === tabId) {
+                    content.classList.add('active');
+                }
+            });
         });
     });
 

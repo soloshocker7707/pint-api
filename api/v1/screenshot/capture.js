@@ -41,7 +41,8 @@ export default async function handler(req, res) {
     css,
     debug = false,
     headers = {},
-    noCache = false
+    noCache = false,
+    colorScheme = 'light'
   } = req.body;
 
   // Feature 8: Cache Lookup
@@ -83,7 +84,8 @@ export default async function handler(req, res) {
         freezeAnimations, 
         css, 
         wait, 
-        fullPage 
+        fullPage,
+        colorScheme
       });
 
       // Feature 5: Template Screenshot handling
