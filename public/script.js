@@ -159,6 +159,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Copy Key Handler
+    const copyBtn = document.getElementById('copy-key');
+    if (copyBtn) copyBtn.addEventListener('click', () => {
+        const key = document.getElementById('display-api-key').textContent;
+        navigator.clipboard.writeText(key).then(() => {
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => copyBtn.textContent = originalText, 2000);
+        });
+    });
+
     // --- ANIMATIONS & GLOW ---
     if (cursorGlow && !window.matchMedia('(max-width: 768px)').matches) {
         document.addEventListener('mousemove', (e) => {

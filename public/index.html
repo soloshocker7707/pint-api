@@ -30,9 +30,59 @@
         </div>
     </nav>
 
-    <!-- Auth Modal ... (unchanged) -->
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="auth-form-container">
+                <h2 id="auth-title">Welcome Back</h2>
+                <p id="auth-subtitle">Enter your details to access your dashboard.</p>
+                <form id="auth-form">
+                    <input type="email" id="auth-email" placeholder="EMAIL ADDRESS" required>
+                    <input type="password" id="auth-password" placeholder="PASSWORD" required>
+                    <button type="submit" id="auth-submit" class="btn btn-primary">Login</button>
+                </form>
+                <p class="auth-toggle">Don't have an account? <span id="toggle-auth">Sign Up</span></p>
+            </div>
+        </div>
+    </div>
 
-    <!-- Dashboard View ... (unchanged) -->
+    <!-- Dashboard View (Hidden by Default) -->
+    <div id="dashboard" class="dashboard-section" style="display: none;">
+        <div class="dashboard-header">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: flex-end; width: 100%; padding: 2rem 0;">
+                <h2>Developer <span>Dashboard</span></h2>
+                <button id="logout-btn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div class="dashboard-card main-stats">
+                    <h3>Your API Key</h3>
+                    <div class="key-container">
+                        <code id="display-api-key">••••••••••••••••••••••••</code>
+                        <button id="copy-key" class="btn btn-small">Copy</button>
+                    </div>
+                    <p class="key-hint" style="margin-top: 1rem; color: var(--text-dim);">Never share your secret key. Use it in the <code>x-api-key</code> header.</p>
+                </div>
+
+                <div class="dashboard-card usage-card">
+                    <h3>Monthly Usage</h3>
+                    <div class="usage-stats" style="margin-top: 1.5rem;">
+                        <div class="stat-item" style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <span class="label">Tier</span>
+                            <span class="value" id="user-tier" style="color: var(--accent); font-weight: 900;">Free</span>
+                        </div>
+                        <div class="stat-item" style="display: flex; justify-content: space-between;">
+                            <span class="label">Usage</span>
+                            <span class="value" style="font-weight: 900;">0 / 250</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <main id="landing-content">
         <section class="hero">
