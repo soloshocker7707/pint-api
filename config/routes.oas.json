@@ -9,10 +9,11 @@
       "get": {
         "x-zuplo-route": {
           "handler": {
-            "export": "urlForwardHandler",
-            "module": "$import(@zuplo/runtime)",
+            "export": "default",
+            "module": "$import(@zuplo/runtime/handlers/status)",
             "options": {
-              "baseUrl": "https://renderkit-api.vercel.app/api"
+              "status": 200,
+              "body": "{\"status\":\"ok\"}"
             }
           }
         },
