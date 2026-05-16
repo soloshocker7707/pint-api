@@ -41,7 +41,7 @@
         "options": {
           "rateLimitBy": "function",
           "limit": 250,
-          "window": "30d",
+          "period": "30d",
           "function": {
             "export": "getQuota",
             "module": "$import(./modules/tiered-limits)"
