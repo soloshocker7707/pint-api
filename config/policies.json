@@ -1,28 +1,8 @@
 {
   "policies": [
     {
-      "name": "supabase-auth",
-      "policyType": "custom-code-inbound",
-      "handler": {
-        "export": "default",
-        "module": "$import(./modules/supabase-auth)"
-      }
-    },
-    {
-      "name": "inject-zuplo-secret",
-      "policyType": "custom-code-inbound",
-      "handler": {
-        "export": "default",
-        "module": "$import(./modules/inject-secret)"
-      }
-    },
-    {
       "name": "cors",
-      "policyType": "custom-code-inbound",
-      "handler": {
-        "export": "default",
-        "module": "$import(./modules/cors-handler)"
-      }
+      "policyType": "cors-v1"
     }
   ]
 }
