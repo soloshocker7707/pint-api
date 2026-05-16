@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auth | RenderKit API</title>
+    <title>Identity Verification | RenderKit API</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -19,64 +19,24 @@
             height: 100%;
         }
         .auth-left {
-            flex: 1.2;
-            position: relative;
-            background: #000;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .auth-left img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-            filter: grayscale(0.5) contrast(1.2);
-        }
-        .auth-left::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to right, transparent, rgba(0,0,0,0.8));
-        }
-        .auth-overlay-text {
-            position: absolute;
-            z-index: 10;
-            bottom: 10%;
-            left: 10%;
-            max-width: 600px;
-        }
-        .auth-overlay-text h2 {
-            font-size: 4rem;
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-        .auth-overlay-text p {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--accent);
-        }
-        .auth-right {
             flex: 0.8;
             background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 4rem;
-            border-left: 8px solid var(--border);
+            border-right: 8px solid var(--border);
             position: relative;
+            z-index: 20;
         }
         .auth-form-wrapper {
             width: 100%;
-            max-width: 450px;
+            max-width: 400px;
         }
         .auth-logo {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             letter-spacing: -2px;
         }
         .auth-logo span {
@@ -86,25 +46,26 @@
         }
         .auth-form input {
             width: 100%;
-            padding: 1.5rem;
+            padding: 1.2rem;
             background: #000;
             border: 4px solid var(--border);
             color: #fff;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             font-family: inherit;
             font-weight: 800;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         .auth-form input:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 8px 8px 0 var(--accent-dim);
+            box-shadow: 6px 6px 0 var(--accent-dim);
         }
         .auth-toggle {
             margin-top: 2rem;
             font-weight: 700;
             color: var(--text-dim);
             text-align: center;
+            font-size: 0.85rem;
         }
         .auth-toggle span {
             color: var(--accent);
@@ -114,59 +75,94 @@
         .back-home {
             position: absolute;
             top: 2rem;
-            right: 2rem;
+            left: 2rem;
             color: var(--text-dim);
             text-decoration: none;
             font-weight: 800;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             letter-spacing: 2px;
+        }
+        .auth-right {
+            flex: 1.2;
+            position: relative;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .auth-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            filter: grayscale(0.2) contrast(1.1);
+        }
+        .auth-right::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to left, transparent, rgba(0,0,0,0.9));
+        }
+        .auth-overlay-text {
+            position: absolute;
+            z-index: 10;
+            bottom: 10%;
+            right: 10%;
+            max-width: 500px;
+            text-align: right;
+        }
+        .auth-overlay-text h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        .auth-overlay-text p {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 4px;
         }
     </style>
 </head>
 <body>
     <div class="auth-container">
+        <!-- Credentials on LEFT -->
         <div class="auth-left">
-            <img src="auth-bg.png" alt="Auth Visual">
-            <div class="auth-overlay-text">
-                <h2>THE ENGINE <br>OF THE <span>FUTURE.</span></h2>
-                <p>// PIPELINE ACCESS: GRANTED</p>
-            </div>
-        </div>
-        <div class="auth-right">
-            <a href="index.html" class="back-home">← BACK TO SYSTEM</a>
+            <a href="index.html" class="back-home">← SYSTEM_EXIT</a>
             <div class="auth-form-wrapper">
                 <div class="auth-logo">RENDER<span>KIT</span></div>
                 <div id="auth-form-container">
-                    <h2 id="auth-title" style="font-size: 2rem; margin-bottom: 1rem; text-transform: uppercase;">Identity Verification</h2>
-                    <p id="auth-subtitle" style="color: var(--text-dim); margin-bottom: 3rem; font-weight: 600;">Enter your encrypted credentials.</p>
+                    <h2 id="auth-title" style="font-size: 1.8rem; margin-bottom: 0.5rem; text-transform: uppercase;">VERIFY_IDENTITY</h2>
+                    <p id="auth-subtitle" style="color: var(--text-dim); margin-bottom: 2.5rem; font-weight: 600; font-size: 0.9rem;">Access the infrastructure core.</p>
                     
                     <form id="auth-form" class="auth-form">
-                        <input type="email" id="auth-email" placeholder="EMAIL ADDRESS" required>
-                        <input type="password" id="auth-password" placeholder="PASSWORD" required>
-                        <button type="submit" id="auth-submit" class="btn btn-primary" style="width: 100%;">Initialize Session</button>
+                        <input type="email" id="auth-email" placeholder="EMAIL_ADDRESS" required>
+                        <input type="password" id="auth-password" placeholder="ENCRYPTED_PASSWORD" required>
+                        <button type="submit" id="auth-submit" class="btn btn-primary" style="width: 100%; padding: 1.2rem;">Initialize_Session</button>
                     </form>
                     
                     <p class="auth-toggle">
-                        <span id="toggle-text">Need to register a new node?</span> 
-                        <span id="toggle-auth">Create Account</span>
+                        <span id="toggle-text">Need new credentials?</span> 
+                        <span id="toggle-auth">Register_Node</span>
                     </p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Image on RIGHT -->
+        <div class="auth-right">
+            <img src="auth-bg.png" alt="Auth Visual">
+            <div class="auth-overlay-text">
+                <h2>RAW_POWER. <br><span>UNLEASHED.</span></h2>
+                <p>// PIPELINE_STATUS: READY</p>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // Specific override for auth page redirection
-        const supabaseUrl = 'https://cvsdvxygucjbbtyydgmx.supabase.co';
-        const supabaseKey = 'YOUR_SUPABASE_ANON_KEY'; // This will be handled in script.js but added here for safety
-        
-        // Listen for auth state to redirect to dashboard on index.html if logged in
-        document.addEventListener('DOMContentLoaded', () => {
-            // Logic handled by script.js, but ensures the form is ready
-            console.log('Auth page initialized');
-        });
-    </script>
 </body>
 </html>
