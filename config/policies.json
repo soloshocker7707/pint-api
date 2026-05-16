@@ -17,31 +17,6 @@
       }
     },
     {
-      "name": "dynamic-rate-limit",
-      "policyType": "rate-limit-v1",
-      "options": {
-        "rateLimitBy": "function",
-        "requestsPerMinute": 5,
-        "function": {
-          "export": "getRateLimit",
-          "module": "$import(./modules/tiered-limits)"
-        }
-      }
-    },
-    {
-      "name": "dynamic-quota",
-      "policyType": "quota-v1",
-      "options": {
-        "quotaBy": "function",
-        "limit": 250,
-        "period": "30d",
-        "function": {
-          "export": "getQuota",
-          "module": "$import(./modules/tiered-limits)"
-        }
-      }
-    },
-    {
       "name": "cors",
       "policyType": "custom-code-inbound",
       "handler": {
