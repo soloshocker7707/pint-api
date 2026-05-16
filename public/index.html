@@ -29,50 +29,42 @@
         </div>
     </nav>
 
-    <!-- Auth Modal -->
-    <div id="auth-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div id="auth-form-container">
-                <h2 id="auth-title">Welcome Back</h2>
-                <p id="auth-subtitle">Enter your details to access your dashboard.</p>
-                <form id="auth-form">
-                    <input type="email" id="auth-email" placeholder="EMAIL ADDRESS" required>
-                    <input type="password" id="auth-password" placeholder="PASSWORD" required>
-                    <button type="submit" id="auth-submit" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Login</button>
-                </form>
-                <p class="auth-toggle">Don't have an account? <span id="toggle-auth">Sign Up</span></p>
-            </div>
+    <nav>
+        <div class="logo">RENDER<span>KIT</span></div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#integration">Integration</a>
+            <a href="#pricing">Pricing</a>
+            <button id="auth-btn" class="btn btn-nav" style="padding: 0.6rem 1.2rem; font-size: 0.8rem;">Login</button>
         </div>
-    </div>
+    </nav>
 
     <!-- Dashboard View (Hidden by Default) -->
-    <div id="dashboard" class="dashboard-section" style="display: none; padding: 10rem 0;">
+    <div id="dashboard" class="dashboard-section" style="display: none; padding: 6rem 0; border-bottom: 4px solid #fff;">
         <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 8px solid #fff; padding-bottom: 2rem; margin-bottom: 4rem;">
-                <h2 style="font-size: 4rem; font-weight: 900; text-transform: uppercase;">DEV <span>DASHBOARD</span></h2>
-                <button id="logout-btn" class="btn btn-secondary">Terminal Logout</button>
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 4px solid var(--accent); padding-bottom: 1.5rem; margin-bottom: 3rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 900; text-transform: uppercase;">DEV <span>DASHBOARD</span></h2>
+                <button id="logout-btn" class="btn btn-secondary" style="padding: 0.8rem 1.5rem; font-size: 0.8rem;">Terminal Logout</button>
             </div>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 4rem;">
-                <div class="brutal-card">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 2rem;">YOUR ACCESS KEY</h3>
-                    <div style="background: #000; padding: 2rem; border: 4px solid var(--accent); display: flex; justify-content: space-between; align-items: center;">
-                        <code id="display-api-key" style="font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 1.2rem;">••••••••••••••••••••••••</code>
-                        <button id="copy-key" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.8rem;">Copy</button>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+                <div class="brutal-card" style="padding: 2rem;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem;">ACCESS KEY</h3>
+                    <div style="background: #000; padding: 1.5rem; border: 3px solid var(--accent); display: flex; justify-content: space-between; align-items: center;">
+                        <code id="display-api-key" style="font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 1rem;">••••••••••••••••••••••••</code>
+                        <button id="copy-key" class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.7rem;">Copy</button>
                     </div>
-                    <p style="margin-top: 1.5rem; color: var(--text-dim); font-weight: 600;">Secret key. Do not share.</p>
                 </div>
 
-                <div class="brutal-card">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 2rem;">INFRASTRUCTURE USAGE</h3>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem;">
-                        <span style="font-weight: 800;">ACTIVE TIER</span>
-                        <span id="user-tier" style="color: var(--accent); font-weight: 900;">FREE_T1</span>
+                <div class="brutal-card" style="padding: 2rem;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem;">LOAD METRICS</h3>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                        <span style="font-weight: 800; font-size: 0.9rem;">TIER</span>
+                        <span id="user-tier" style="color: var(--accent); font-weight: 900; font-size: 0.9rem;">FREE_T1</span>
                     </div>
                     <div style="display: flex; justify-content: space-between;">
-                        <span style="font-weight: 800;">MONTHLY LOAD</span>
-                        <span style="font-weight: 900;">0 / 250</span>
+                        <span style="font-weight: 800; font-size: 0.9rem;">USAGE</span>
+                        <span style="font-weight: 900; font-size: 0.9rem;">0 / 250</span>
                     </div>
                 </div>
             </div>
@@ -80,40 +72,40 @@
     </div>
 
     <main id="landing-content">
-        <section class="hero">
+        <section class="hero" style="padding: 8rem 0;">
             <div class="container">
-                <div class="hero-content">
+                <div class="hero-content" style="border-left: 8px solid var(--accent); padding-left: 3rem;">
                     <div class="section-tag">v1.2.0 Stable</div>
-                    <h1>RENDER <br>WITHOUT <br><span>COMPROMISE.</span></h1>
-                    <p class="hero-subtitle">Industrial-grade headless browser infrastructure. 100% JS coverage. Zero popups. Infinite scale.</p>
+                    <h1 style="font-size: 7rem;">RENDER <br>WITHOUT <br><span>COMPROMISE.</span></h1>
+                    <p class="hero-subtitle" style="font-size: 1.2rem; margin-bottom: 3rem;">Industrial-grade headless browser infrastructure. Strip banners. Freeze time. Scale infinitely.</p>
                     <div class="cta-group">
                         <button id="hero-signup" class="btn btn-primary">Start Building</button>
-                        <a href="#integration" class="btn btn-secondary" style="text-decoration: none; margin-left: 1.5rem;">Read API Docs</a>
+                        <a href="#integration" class="btn btn-secondary" style="text-decoration: none; margin-left: 1rem;">API Docs</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="marquee">
+        <div class="marquee" style="padding: 1rem 0; font-size: 1.2rem;">
             <div class="marquee-content">
-                SYSTEM STATUS: OPTIMAL &nbsp;&nbsp; // &nbsp;&nbsp; LATEST RENDER: 142ms &nbsp;&nbsp; // &nbsp;&nbsp; NODES ACTIVE: 1,402 &nbsp;&nbsp; // &nbsp;&nbsp; CACHE HIT RATE: 98.4% &nbsp;&nbsp; // &nbsp;&nbsp; SYSTEM STATUS: OPTIMAL &nbsp;&nbsp; // &nbsp;&nbsp; LATEST RENDER: 142ms &nbsp;&nbsp; // &nbsp;&nbsp; NODES ACTIVE: 1,402 &nbsp;&nbsp; // &nbsp;&nbsp; CACHE HIT RATE: 98.4%
+                STATUS: OPTIMAL // LATEST RENDER: 142ms // NODES ACTIVE: 1,402 // CACHE HIT: 98.4% // STATUS: OPTIMAL // LATEST RENDER: 142ms // NODES ACTIVE: 1,402 // CACHE HIT: 98.4%
             </div>
         </div>
 
-        <section id="integration" class="integration-section">
+        <section id="integration" class="integration-section" style="padding: 8rem 0;">
             <div class="container">
-                <div class="section-tag">API Integration</div>
-                <h2 style="font-size: 5rem; font-weight: 900; margin-bottom: 2rem;">BUILT FOR <span>PIPELINES.</span></h2>
+                <div class="section-tag">Integration</div>
+                <h2 style="font-size: 4rem; font-weight: 900; margin-bottom: 3rem;">BUILT FOR <span>PIPELINES.</span></h2>
                 
-                <div class="integration-tabs">
+                <div class="integration-tabs" style="box-shadow: 12px 12px 0 var(--accent);">
                     <div class="tab-headers">
-                        <button class="tab-btn active" data-tab="curl">CURL</button>
-                        <button class="tab-btn" data-tab="nodejs">NODE.JS</button>
-                        <button class="tab-btn" data-tab="python">PYTHON</button>
+                        <button class="tab-btn active" data-tab="curl" style="padding: 1.5rem 3rem;">CURL</button>
+                        <button class="tab-btn" data-tab="nodejs" style="padding: 1.5rem 3rem;">NODE.JS</button>
+                        <button class="tab-btn" data-tab="python" style="padding: 1.5rem 3rem;">PYTHON</button>
                     </div>
-                    <div class="tab-content active" id="curl">
-                        <div class="code-window">
-                            <div class="code-content">
+                    <div class="tab-content active" id="curl" style="padding: 0;">
+                        <div class="code-window" style="min-height: 300px; padding: 2rem;">
+                            <div class="code-content" style="font-size: 1rem;">
 <pre><code><span class="keyword">curl</span> -X POST https://api.renderkit.com/v1/screenshot/capture \
 -H <span class="string">"x-api-key: RK_PRO_92"</span> \
 -d '{
@@ -124,101 +116,91 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Node/Python contents ... (simplified for this call) -->
-                      <section id="features" style="padding: 10rem 0;">
+                </div>
+            </div>
+        </section>
+
+        <section id="features" style="padding: 8rem 0; background: #080808; border-top: 4px solid #fff;">
             <div class="container">
                 <div class="section-tag">Feature Suite</div>
-                <h2 style="font-size: 5rem; font-weight: 900; margin-bottom: 5rem;">THE FULL <span>STACK.</span></h2>
-                <div class="features-grid">
-                    <!-- Feature 1: Clean -->
-                    <div class="feature-item">
-                        <div style="font-size: 0.8rem; font-weight: 900; color: var(--accent); margin-bottom: 1rem;">// 01_CLEAN_ENGINE</div>
-                        <h3>AUTO CLEAN</h3>
-                        <p>Heuristic banner removal. Zero popups. Pure content from every render.</p>
-                        <div class="code-snippet">"clean": true</div>
+                <h2 style="font-size: 4rem; font-weight: 900; margin-bottom: 4rem;">THE FULL <span>STACK.</span></h2>
+                <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    <div class="feature-item" style="padding: 3rem; border: 1px solid #222;">
+                        <div style="font-size: 0.7rem; font-weight: 900; color: var(--accent); margin-bottom: 0.8rem;">// 01_CLEAN</div>
+                        <h3 style="font-size: 1.8rem;">AUTO CLEAN</h3>
+                        <p style="font-size: 1rem;">Heuristic banner removal.</p>
+                        <div class="code-snippet" style="font-size: 0.8rem;">"clean": true</div>
                     </div>
-                    <!-- Feature 2: Smart Wait -->
-                    <div class="feature-item">
-                        <div style="font-size: 0.8rem; font-weight: 900; color: var(--accent); margin-bottom: 1rem;">// 02_STABILITY</div>
-                        <h3>SMART WAIT</h3>
-                        <p>Intelligent stability detection. We wait for fonts, network, and layout.</p>
-                        <div class="code-snippet">"wait": "smart"</div>
+                    <div class="feature-item" style="padding: 3rem; border: 1px solid #222;">
+                        <div style="font-size: 0.7rem; font-weight: 900; color: var(--accent); margin-bottom: 0.8rem;">// 02_STABILITY</div>
+                        <h3 style="font-size: 1.8rem;">SMART WAIT</h3>
+                        <p style="font-size: 1rem;">Intelligent stability detection.</p>
+                        <div class="code-snippet" style="font-size: 0.8rem;">"wait": "smart"</div>
                     </div>
-                    <!-- Feature 3: Stealth -->
-                    <div class="feature-item">
-                        <div style="font-size: 0.8rem; font-weight: 900; color: var(--accent); margin-bottom: 1rem;">// 03_EVASION</div>
-                        <h3>PRO STEALTH</h3>
-                        <p>Bypass anti-bot systems with advanced browser fingerprinting.</p>
-                        <div class="code-snippet">"stealth": true</div>
+                    <div class="feature-item" style="padding: 3rem; border: 1px solid #222;">
+                        <div style="font-size: 0.7rem; font-weight: 900; color: var(--accent); margin-bottom: 0.8rem;">// 03_EVASION</div>
+                        <h3 style="font-size: 1.8rem;">PRO STEALTH</h3>
+                        <p style="font-size: 1rem;">Fingerprinting bypass.</p>
+                        <div class="code-snippet" style="font-size: 0.8rem;">"stealth": true</div>
                     </div>
-                    <!-- Feature 4: PDF -->
-                    <div class="feature-item">
-                        <div style="font-size: 0.8rem; font-weight: 900; color: var(--accent); margin-bottom: 1rem;">// 04_DOCUMENTS</div>
-                        <h3>PDF GEN</h3>
-                        <p>Generate pixel-perfect A4/Letter PDFs from any URL or HTML template.</p>
-                        <div class="code-snippet">POST /pdf</div>
-                    </div>
-                    <!-- Feature 5: OG Images -->
-                    <div class="feature-item">
-                        <div style="font-size: 0.8rem; font-weight: 900; color: var(--accent); margin-bottom: 1rem;">// 05_SOCIAL</div>
-                        <h3>OG IMAGES</h3>
-                        <p>Automated OpenGraph cards for your SaaS with dynamic template data.</p>
-                        <div class="code-snippet">POST /og</div>
-                    </div>
-                    <!-- Feature 6: Custom CSS -->
-                    <div class="feature-item">
-                        <div style="font-size: 0.8rem; font-weight: 900; color: var(--accent); margin-bottom: 1rem;">// 06_STYLING</div>
-                        <h3>CSS INJECT</h3>
-                        <p>Inject custom CSS before capture to modify layout or hide elements.</p>
-                        <div class="code-snippet">"css": "body { ... }"</div>
+                    <div class="feature-item" style="padding: 3rem; border: 1px solid #222;">
+                        <div style="font-size: 0.7rem; font-weight: 900; color: var(--accent); margin-bottom: 0.8rem;">// 04_DOCS</div>
+                        <h3 style="font-size: 1.8rem;">PDF GEN</h3>
+                        <p style="font-size: 1rem;">Perfect A4/Letter PDF docs.</p>
+                        <div class="code-snippet" style="font-size: 0.8rem;">POST /pdf</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="pricing" style="padding: 10rem 0; background: #000; border-top: 4px solid #fff;">
+        <section id="pricing" style="padding: 8rem 0; background: #000; border-top: 4px solid #fff;">
             <div class="container">
-                <div class="section-tag">Pricing Tiers</div>
-                <h2 style="font-size: 5rem; font-weight: 900; margin-bottom: 5rem;">CHOOSE YOUR <span>POWER.</span></h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 4rem;">
+                <div class="section-tag">Pricing</div>
+                <h2 style="font-size: 4rem; font-weight: 900; margin-bottom: 4rem;">CHOOSE YOUR <span>POWER.</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
                     <!-- Starter -->
-                    <div class="brutal-card">
-                        <div style="font-weight: 900; margin-bottom: 1rem; color: var(--accent);">// BASIC_NODE</div>
-                        <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">STARTER</h3>
-                        <div style="font-size: 5rem; font-weight: 900; margin-bottom: 2rem;">$0<span style="font-size: 1.2rem; color: var(--text-dim); text-transform: uppercase;">/mo</span></div>
-                        <ul style="list-style: none; margin-bottom: 4rem; font-weight: 600;">
-                            <li style="margin-bottom: 1rem;">✓ 250 Requests / Mo</li>
-                            <li style="margin-bottom: 1rem;">✓ Standard Screenshots</li>
-                            <li style="margin-bottom: 1rem;">✓ Basic Stealth Mode</li>
-                            <li style="margin-bottom: 1rem;">✓ Community Support</li>
+                    <div class="brutal-card" style="padding: 2.5rem;">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">STARTER</h3>
+                        <div style="font-size: 3.5rem; font-weight: 900; margin-bottom: 2rem;">$0</div>
+                        <ul style="list-style: none; margin-bottom: 3rem; font-size: 0.9rem;">
+                            <li style="margin-bottom: 0.8rem;">✓ 250 Requests / Mo</li>
+                            <li style="margin-bottom: 0.8rem;">✓ Standard Stealth</li>
+                            <li style="margin-bottom: 0.8rem;">✓ Community Support</li>
                         </ul>
-                        <button class="btn btn-secondary" style="width: 100%;">Select Tier</button>
+                        <button class="btn btn-secondary" style="width: 100%; padding: 1rem;">Select</button>
                     </div>
                     <!-- Pro -->
-                    <div class="brutal-card" style="background: var(--accent); color: #000; border-color: #000; box-shadow: 20px 20px 0 #fff;">
-                        <div style="font-weight: 900; margin-bottom: 1rem; opacity: 0.7;">// HIGH_THROUGHPUT</div>
-                        <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">PRO</h3>
-                        <div style="font-size: 5rem; font-weight: 900; margin-bottom: 2rem;">$29<span style="font-size: 1.2rem; opacity: 0.7; text-transform: uppercase;">/mo</span></div>
-                        <ul style="list-style: none; margin-bottom: 4rem; font-weight: 900;">
-                            <li style="margin-bottom: 1rem;">✓ 5,000 Requests / Mo</li>
-                            <li style="margin-bottom: 1rem;">✓ Auto-Clean Heuristics</li>
-                            <li style="margin-bottom: 1rem;">✓ Smart Stability Engine</li>
-                            <li style="margin-bottom: 1rem;">✓ Premium Stealth</li>
+                    <div class="brutal-card" style="padding: 2.5rem; background: var(--accent); color: #000; border-color: #000; box-shadow: 12px 12px 0 #fff;">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">PRO</h3>
+                        <div style="font-size: 3.5rem; font-weight: 900; margin-bottom: 2rem;">$29</div>
+                        <ul style="list-style: none; margin-bottom: 3rem; font-size: 0.9rem; font-weight: 900;">
+                            <li style="margin-bottom: 0.8rem;">✓ 5,000 Requests / Mo</li>
+                            <li style="margin-bottom: 0.8rem;">✓ Auto-Clean Heuristics</li>
+                            <li style="margin-bottom: 0.8rem;">✓ Smart Stability</li>
                         </ul>
-                        <button class="btn-primary" style="width: 100%; padding: 1.5rem; border: 4px solid #000; font-weight: 900; cursor: pointer;">Deploy Pro</button>
+                        <button class="btn-primary" style="width: 100%; padding: 1rem; border: 4px solid #000;">Deploy Pro</button>
                     </div>
                     <!-- Business -->
-                    <div class="brutal-card">
-                        <div style="font-weight: 900; margin-bottom: 1rem; color: var(--accent);">// ENTERPRISE_GRID</div>
-                        <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">BUSINESS</h3>
-                        <div style="font-size: 5rem; font-weight: 900; margin-bottom: 2rem;">$99<span style="font-size: 1.2rem; color: var(--text-dim); text-transform: uppercase;">/mo</span></div>
-                        <ul style="list-style: none; margin-bottom: 4rem; font-weight: 600;">
-                            <li style="margin-bottom: 1rem;">✓ 20,000 Requests / Mo</li>
-                            <li style="margin-bottom: 1rem;">✓ Custom CSS Injection</li>
-                            <li style="margin-bottom: 1rem;">✓ HTML Templates (Liquid)</li>
-                            <li style="margin-bottom: 1rem;">✓ Priority 24/7 Support</li>
+                    <div class="brutal-card" style="padding: 2.5rem;">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">BUSINESS</h3>
+                        <div style="font-size: 3.5rem; font-weight: 900; margin-bottom: 2rem;">$99</div>
+                        <ul style="list-style: none; margin-bottom: 3rem; font-size: 0.9rem;">
+                            <li style="margin-bottom: 0.8rem;">✓ 20,000 Requests / Mo</li>
+                            <li style="margin-bottom: 0.8rem;">✓ Custom CSS Injection</li>
+                            <li style="margin-bottom: 0.8rem;">✓ HTML Templates</li>
                         </ul>
-                        <button class="btn btn-secondary" style="width: 100%;">Scale Up</button>
+                        <button class="btn btn-secondary" style="width: 100%; padding: 1rem;">Scale</button>
+                    </div>
+                    <!-- Enterprise -->
+                    <div class="brutal-card" style="padding: 2.5rem; border-color: var(--accent);">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">ENTERPRISE</h3>
+                        <div style="font-size: 3.5rem; font-weight: 900; margin-bottom: 2rem;">$199</div>
+                        <ul style="list-style: none; margin-bottom: 3rem; font-size: 0.9rem;">
+                            <li style="margin-bottom: 0.8rem;">✓ 100,000 Requests / Mo</li>
+                            <li style="margin-bottom: 0.8rem;">✓ Dedicated Rendering Nodes</li>
+                            <li style="margin-bottom: 0.8rem;">✓ Custom SLA & Support</li>
+                        </ul>
+                        <button class="btn btn-secondary" style="width: 100%; padding: 1rem; border-color: var(--accent); color: var(--accent);">Max Power</button>
                     </div>
                 </div>
             </div>
@@ -227,11 +209,11 @@
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">RENDER<span>KIT</span></div>
+            <div class="footer-content" style="padding: 6rem 0;">
+                <div class="footer-logo" style="font-size: 2.5rem;">RENDER<span>KIT</span></div>
                 <div style="text-align: right;">
-                    <p style="font-weight: 900; font-size: 1.2rem; color: var(--accent); margin-bottom: 1rem;">SYSTEM_READY</p>
-                    <p style="color: var(--text-dim);">© 2026 RenderKit Architecture. All Rights Reserved.</p>
+                    <p style="font-weight: 900; font-size: 1rem; color: var(--accent); margin-bottom: 0.5rem;">SYSTEM_READY</p>
+                    <p style="color: var(--text-dim); font-size: 0.8rem;">© 2026 RenderKit Architecture.</p>
                 </div>
             </div>
         </div>

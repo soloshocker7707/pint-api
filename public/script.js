@@ -6,11 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
     // --- UI ELEMENTS ---
-    const authModal = document.getElementById('auth-modal');
     const authBtn = document.getElementById('auth-btn');
-    const closeModal = document.querySelector('.close-modal');
     const authForm = document.getElementById('auth-form');
-    const toggleAuth = document.getElementById('toggle-auth');
     const dashboard = document.getElementById('dashboard');
     const landingContent = document.getElementById('landing-content');
     const logoutBtn = document.getElementById('logout-btn');
