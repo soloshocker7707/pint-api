@@ -26,7 +26,7 @@ export function getRateLimit(request: ZuploRequest, context: ZuploContext) {
   const config = TIER_CONFIGS[activeTierName];
 
   return {
-    key: request.user?.sub || request.clientIp,
+    key: request.user?.sub || request.headers.get("true-client-ip") || "anonymous",
     requestsAllowed: config.rpm,
     timeWindowMinutes: 1
   };
