@@ -19,8 +19,10 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
     request.user = {
       sub: `mock_${apiKey}`,
-      email: "tester@renderkit.com",
-      groups: [activeTier]
+      data: {
+        email: "tester@renderkit.com",
+        groups: [activeTier]
+      }
     };
     
     context.log.info(`Mocking Auth: API Key ${apiKey} -> Tier ${activeTier}`);
@@ -53,8 +55,10 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     const userProfile = profiles[0];
     request.user = {
       sub: userProfile.id,
-      email: userProfile.email,
-      groups: [userProfile.tier || "Starter"]
+      data: {
+        email: userProfile.email,
+        groups: [userProfile.tier || "Starter"]
+      }
     };
 
     return request;
