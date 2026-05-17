@@ -18,7 +18,11 @@
     },
     {
       "name": "dynamic-rate-limit",
-      "policyType": "rate-limit-v1",
+      "policyType": "rate-limit-inbound",
+      "handler": {
+        "export": "RateLimitInbound",
+        "module": "$import(@zuplo/runtime)"
+      },
       "options": {
         "rateLimitBy": "function",
         "requestsPerMinute": 5,
@@ -30,7 +34,11 @@
     },
     {
       "name": "dynamic-quota",
-      "policyType": "quota-v1",
+      "policyType": "quota-inbound",
+      "handler": {
+        "export": "QuotaInbound",
+        "module": "$import(@zuplo/runtime)"
+      },
       "options": {
         "quotaBy": "function",
         "limit": 250,
